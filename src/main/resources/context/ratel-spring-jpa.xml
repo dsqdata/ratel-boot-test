@@ -1,0 +1,83 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xmlns:tx="http://www.springframework.org/schema/tx"-->
+<!--       xmlns:jpa="http://www.springframework.org/schema/data/jpa"-->
+<!--       xmlns:repository="http://www.springframework.org/schema/data/repository"-->
+<!--       xmlns:context="http://www.springframework.org/schema/context"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd-->
+<!--		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd-->
+<!--		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd-->
+<!--        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd-->
+<!--         http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd-->
+<!--        http://www.springframework.org/schema/data/repository-->
+<!--        http://www.springframework.org/schema/data/repository/spring-repository.xsd"-->
+<!--       default-lazy-init="false">-->
+
+<!--&lt;!&ndash;    <bean id="yamlProperties" class="org.springframework.beans.factory.config.YamlPropertiesFactoryBean">&ndash;&gt;-->
+<!--&lt;!&ndash;        <property name="resources" value="classpath:config/application.yml"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </bean>&ndash;&gt;-->
+<!--&lt;!&ndash;    <context:property-placeholder properties-ref="yamlProperties"/>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; JPA Entity Manager 配置, 设置depends-on="cacheManager"，确保共享模式下优先加载Spring CacheManager &ndash;&gt;-->
+<!--    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"-->
+<!--          depends-on="hibernateAutoDdlProcessor">-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--        <property name="persistenceUnitName" value="entityManager"/>-->
+<!--        <property name="jpaVendorAdapter">-->
+<!--            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>-->
+<!--        </property>-->
+<!--        <property name="packagesToScan">-->
+<!--            <list>-->
+<!--                &lt;!&ndash;<value>com.entdiy.aud.envers</value>&ndash;&gt;-->
+<!--                <value>org.ratel.**.domain</value>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--        <property name="jpaProperties">-->
+<!--            <props>-->
+<!--                <prop key="hibernate.dialect">${ratel.jpa.hibernate.dialect}</prop>-->
+<!--                <prop key="hibernate.connection.autocommit">false</prop>-->
+<!--                <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.DefaultNamingStrategy</prop>-->
+<!--                <prop key="hibernate.hbm2ddl.auto">${ratel.jpa.hibernate.hbm2ddl.auto}</prop>-->
+
+<!--&lt;!&ndash;                <prop key="hibernate.cache.use_query_cache">true</prop>&ndash;&gt;-->
+<!--&lt;!&ndash;                <prop key="hibernate.cache.use_second_level_cache">true</prop>&ndash;&gt;-->
+<!--&lt;!&ndash;                <prop key="hibernate.cache.region_prefix">hibernate_${build.version}</prop>&ndash;&gt;-->
+<!--&lt;!&ndash;                <prop key="hibernate.cache.use_structured_entries">true</prop>&ndash;&gt;-->
+<!--&lt;!&ndash;                <prop key="hibernate.generate_statistics">false</prop>&ndash;&gt;-->
+<!--&lt;!&ndash;                <prop key="javax.persistence.sharedCache.mode">ENABLE_SELECTIVE</prop>&ndash;&gt;-->
+<!--&lt;!&ndash;                &lt;!&ndash; Redis Cache &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <prop key="hibernate.cache.region.factory_class">&ndash;&gt;-->
+<!--&lt;!&ndash;                    com.entdiy.core.cache.ReloadableSingletonRedisRegionFactory&ndash;&gt;-->
+<!--&lt;!&ndash;                </prop>&ndash;&gt;-->
+<!--&lt;!&ndash;                <prop key="hibernate.cache.provider_configuration_file_resource_path">${hibernate.redis.config}</prop>&ndash;&gt;-->
+
+<!--                <prop key="org.hibernate.envers.default_schema">${ratel.jpa.hibernate.envers.default.schema}</prop>-->
+<!--                <prop key="org.hibernate.envers.audit_table_prefix"></prop>-->
+<!--                <prop key="org.hibernate.envers.audit_table_suffix">_aud</prop>-->
+<!--                &lt;!&ndash; #配置是否不对乐观锁字段修改时记录修改记录，即使用Version字段，默认值为true &ndash;&gt;-->
+<!--                <prop key="org.hibernate.envers.do_not_audit_optimistic_locking_field">false</prop>-->
+<!--                &lt;!&ndash; #启用的属性会在_AUD表中自动创建<column>_MOD列，其会记录属性是否在此版本中被修改。&ndash;&gt;-->
+<!--                <prop key="org.hibernate.envers.global_with_modified_flag">true</prop>-->
+<!--            </props>-->
+<!--        </property>-->
+<!--        &lt;!&ndash;jpa的方言 ：高级的特性 &ndash;&gt;-->
+<!--        <property name="jpaDialect" >-->
+<!--            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash; JPA 事务配置 &ndash;&gt;-->
+<!--    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">-->
+<!--        <property name="entityManagerFactory" ref="entityManagerFactory"/>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash; 使用annotation定义事务 &ndash;&gt;-->
+<!--    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
+
+<!--    &lt;!&ndash; Spring Data JPA配置 &ndash;&gt;-->
+<!--    <jpa:repositories base-package="org.ratel.**.repository" transaction-manager-ref="transactionManager"-->
+<!--                      entity-manager-factory-ref="entityManagerFactory">-->
+<!--        <repository:exclude-filter type="regex" expression="com.ratel.core.*"/>-->
+<!--    </jpa:repositories>-->
+<!--</beans>-->

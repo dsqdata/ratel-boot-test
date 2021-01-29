@@ -1,0 +1,41 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /
+spring:
+  #  main:
+  #    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  profiles:
+    active: dev, mysql, ratel
+  jackson:
+    time-zone: GMT+8
+  cache:
+    ehcache:
+      config: classpath:/ehcache/ehcache-local.xml
+
+  #配置 Jpa
+  jpa:
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        # session_factory:
+        # statement_inspector: com.ratel.modules.SqlStatementInspector
+        # interceptor: com.ratel.framework.domain.interceptor.HibernateInterceptor
+      org:
+        hibernate:
+          envers:
+            allow_identifier_reuse: true
+            #default_catalog:  #配置审计表的schema，默认为null
+            #default_schema:  #配置审计表的catalog，默认为null
+            do_not_audit_optimistic_locking_field: true #配置是否不对乐观锁字段修改时记录修改记录，即使用Version字段，默认值为true
+            global_with_modified_flag: true  #启用的属性会在_AUD表中自动创建<column>_MOD列，其会记录属性是否在此版本中被修改。
+            #audit_table_prefix:
+            audit_table_suffix: _audit
+            audit_strategy: org.hibernate.envers.strategy.internal.DefaultAuditStrategy #DefaultAuditStrategy  表中不会有REVEND，REVEND_TSTMP两个字段，只会单纯的记录变更与版本 ValidityAuditStrategy 在新增一条变更记录时，会更新上一条变更记录的REVEND，REVEND_TSTMP为当前的版本号以及变更时间
+            audit_strategy_validity_store_revend_timestamp: true
+            revision_field_name: VER #配置审计表中记录版本号的字段名称
+            revision_type_field_name: REVTYPE #配置审计表中数据操作类型的字段名称，0：新增 1：修改 2：删除
+            revision_on_collection_change: true #配置是否支持关联表修改时记录修改记录,默认为true
+            store_data_at_delete: true #配置是否在删除操作时，记录所有字段还是只记录id值。默认为false false：只记录id true：记录全部字段
+

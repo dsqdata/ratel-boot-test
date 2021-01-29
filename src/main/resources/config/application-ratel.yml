@@ -1,0 +1,58 @@
+ratel:
+  build:
+    version: 1.0.0
+    dev-mode: true
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      envers:
+        default:
+          schema:
+      hbm2ddl:
+        auto: update
+
+  modules:
+    quartz:
+      pool:
+        # 核心线程池大小
+        core-pool-size: 10
+        # 最大线程数
+        max-pool-size: 30
+        # 活跃时间
+        keep-alive-seconds: 60
+        # 队列容量
+        queue-capacity: 50
+
+    security:
+      conf:
+        userDetailsService: sysUserService #通过该名字获得 UserDetailsService
+        #手机/邮箱验证码有效时间（分钟）
+        verificationCode:
+          expiration: 5
+        #登录图形验证码有效时间/分钟
+        loginCode:
+          expiration: 5
+          enableWeb: false
+          enableMobile: false
+        #密码加密传输，前端公钥加密，后端私钥解密
+        rsa:
+          private_key: MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEA0vfvyTdGJkdbHkB8mp0f3FE0GYP3AYPaJF7jUd1M0XxFSE2ceK3k2kw20YvQ09NJKk+OMjWQl9WitG9pB6tSCQIDAQABAkA2SimBrWC2/wvauBuYqjCFwLvYiRYqZKThUS3MZlebXJiLB+Ue/gUifAAKIg1avttUZsHBHrop4qfJCwAI0+YRAiEA+W3NK/RaXtnRqmoUUkb59zsZUBLpvZgQPfj1MhyHDz0CIQDYhsAhPJ3mgS64NbUZmGWuuNKp5coY2GIj/zYDMJp6vQIgUueLFXv/eZ1ekgz2Oi67MNCk5jeTF2BurZqNLR3MSmUCIFT3Q6uHMtsB9Eha4u7hS31tj1UWE+D+ADzp59MGnoftAiBeHT7gDMuqeJHPL4b+kC+gzV4FGTfhR9q3tTbklZkD2A==
+          salt: 313335323436
+      sms:
+        message:
+          expire: 14000
+          loginUrl: http://127.0.0.1:8005/auth/login
+          pathUrl: http://127.0.0.1:8005/sys/sendMessage/doPost
+          pathUrlN: http://127.0.0.1:8005/api/mq/sms/sendSms
+          templateN: SMS_184220413
+          sign: 园区企业服务平台
+          #loginUrl: http://localhost:8008/auth/login
+          #pathUrl: http://localhost:8008/sys/sendMessage/doPost
+          username: 统一认证平台
+          password: Jx6VWC98ENsN5SXgMi91QgdUiU8XQ9Y+gjKDHTnOB9q5TxXAaMraFZ/WFOJ5jRUwfZPmFfNpfXTvs25gDMrArw==
+
+      # 文件存储路径
+      file:
+        # 文件大小 /M
+        maxSize: 100
+        avatarMaxSize: 5
