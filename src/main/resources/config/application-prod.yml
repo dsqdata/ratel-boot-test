@@ -12,7 +12,6 @@ spring:
 ratel:
   log:
     basePath: /Users/dongchuang/Downloads/logs
-
   modules:
     security:
       conf:
@@ -23,5 +22,3 @@ ratel:
         avatar: /data/nginx/jsth/app/avatar/
         jarHtml: classpath:/html/  # none - 代表不实用jar包 中的静态文件
         html: /data/rate_app/file/html/
-        #  jarHtml: none  #classpath:/html/  # none - 代表不实用jar包 中的静态文件
-        #  html: D:\code\yn_yq\rtadmin-server\rtadmin-run\src\main\resources\html\

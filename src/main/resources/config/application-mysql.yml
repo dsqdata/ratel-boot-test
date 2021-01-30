@@ -3,7 +3,6 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     #    driverClassName: com.mysql.jdbc.Driver    # mysql-connector-java 5.x及之前版本中的
     driverClassName: com.mysql.cj.jdbc.Driver # mysql-connector-java 6.x及后续版本中的
-
     # 初始化配置
     initial-size: 3
     # 最小连接数
