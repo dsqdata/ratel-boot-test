@@ -12,7 +12,6 @@ spring:
   cache:
     ehcache:
       config: classpath:/ehcache/ehcache-local.xml
-
   #配置 Jpa
   jpa:
     open-in-view: true
