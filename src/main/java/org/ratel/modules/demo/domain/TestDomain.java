@@ -1,4 +1,4 @@
-package org.ratel.modules.test.domain;
+package org.ratel.modules.demo.domain;
 
 import lombok.Getter;
 import lombok.Setter;

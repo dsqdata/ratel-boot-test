@@ -1,9 +1,9 @@
-package org.ratel.modules.test.service;
+package org.ratel.modules.demo.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ratel.framework.jpa.service.BaseService;
-import org.ratel.modules.test.domain.TestDomain;
-import org.ratel.modules.test.repository.TestDomainRepository;
+import org.ratel.modules.demo.domain.TestDomain;
+import org.ratel.modules.demo.repository.TestDomainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
