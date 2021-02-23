@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="testProcess" class="org.ratel.framework.rmi.server.process.impl.TestRmiServerProcess"/>
+
+    <bean id="txnService" class="org.ratel.framework.rmi.server.service.TxnService">
+        <!-- any additional properties, maybe a DAO? -->
+        <property name="txnMapProcess">
+            <map>
+                <entry key="testProcess" value-ref="testProcess" />
+            </map>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- 这里的服务名可以随意填写但是必须和rmi://hostname:1199/xxxxxxx的xxxxxxx相同 -->
+        <property name="serviceName" value="txnService"/>
+        <!-- 导出实体 -->
+        <property name="service" ref="txnService"/>
+        <!-- 导出接口，这个为导出接口，注意，客户端包名可以和这里不同，但是为了统一建议做一个coreInterface 包，以便以后维护方便 -->
+        <property name="serviceInterface" value="org.ratel.framework.rmi.service.ITxnService"/>
+        <!-- 端口号，默认为1099，这里注意占用问题 -->
+        <property name="registryPort" value="1199"/>
+    </bean>
+</beans>

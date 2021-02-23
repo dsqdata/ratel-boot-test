@@ -1,15 +1,11 @@
 package org.ratel.framework.redis.entity;
 
-import org.ratel.framework.redis.entity.BaseRedisEntity;
-
 import java.io.Serializable;
 import java.util.UUID;
 
-public class UserEntity extends BaseRedisEntity {
+public class UserEntity extends RatelNoRepeatRedisEntity {
 
     private static final long serialVersionUID = 5237730257103305078L;
-
-
 
     private Long id;
     private String userName;

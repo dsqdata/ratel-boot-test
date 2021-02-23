@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="txnService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <!-- 接收的rmi协议 -->
+        <property name="serviceUrl" value="rmi://localhost:1199/txnService"/>
+        <!-- 接收的rmi协议的接口 -->
+        <property name="serviceInterface" value="org.ratel.framework.rmi.service.ITxnService"/>
+    </bean>
+</beans>

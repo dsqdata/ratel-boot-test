@@ -34,7 +34,6 @@ public class RedisMainTest {
     @Test
     public void testSerializable() {
         UserEntity user = new UserEntity();
-//        user.setKey(UUID.randomUUID().toString().replaceAll("-", ""));
         user.setId(1L);
         user.setUserName("朝雾轻寒");
         user.setUserSex("男");

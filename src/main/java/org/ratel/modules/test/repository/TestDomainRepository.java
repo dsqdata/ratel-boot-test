@@ -1,7 +1,7 @@
-package org.ratel.modules.repository;
+package org.ratel.modules.test.repository;
 
 import org.ratel.framework.jpa.repository.BaseRepository;
-import org.ratel.modules.domain.TestDomain;
+import org.ratel.modules.test.domain.TestDomain;
 import org.springframework.stereotype.Repository;
 
 @Repository
