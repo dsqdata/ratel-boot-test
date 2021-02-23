@@ -1,14 +1,18 @@
+package org.ratel.framework;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ratel.AppRun;
+import org.ratel.framework.redis.entity.UserEntity;
+import org.ratel.framework.redis.template.RatelRedisTemplate;
 import org.ratel.modules.domain.TestDomain;
 import org.ratel.modules.service.TestDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AppRun.class)
@@ -45,5 +49,6 @@ public class AppTest {
         list.add(testDomain02);
         testDomainService.saveListNoException(list);
     }
+
 
 }

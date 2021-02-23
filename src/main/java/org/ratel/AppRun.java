@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 //@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @Configuration
-//@ImportResource(locations = {"classpath:context/ratel-spring-jpa.xml"})
+@ImportResource(locations = {"classpath:context/ratel-spring-redis.xml"})
 public class AppRun {
 
     public static void main(String[] args) {
@@ -35,5 +35,6 @@ public class AppRun {
         fa.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "[]{}"));
         return fa;
     }
+
 
 }
