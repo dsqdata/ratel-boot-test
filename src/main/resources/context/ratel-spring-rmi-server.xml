@@ -24,5 +24,6 @@
         <property name="serviceInterface" value="org.ratel.framework.rmi.service.ITxnService"/>
         <!-- 端口号，默认为1099，这里注意占用问题 -->
         <property name="registryPort" value="1199"/>
+        <property name="servicePort" value="1199"/>
     </bean>
 </beans>

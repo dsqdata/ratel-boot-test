@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<localRepository>/Users/dongchuang/Data/soft/apache-maven-3.3.9/repository</localRepository>
+
+    <pluginGroups></pluginGroups>
+    <proxies></proxies>
+
+    <servers>
+        <server>
+            <id>nexus-releases</id>
+            <username>016442</username>
+            <password>123456</password>
+        </server>
+
+        <server>
+            <id>nexus-snapshots</id>
+            <username>016442</username>
+            <password>123456</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <id>nexus-releases</id>
+            <mirrorOf>*</mirrorOf>
+            <name>nexus-releases</name>
+            <url>http://172.16.36.173:8080/nexus/repository/maven-public/</url>
+        </mirror>
+
+        <mirror>
+            <id>nexus-snapshots</id>
+            <mirrorOf>*</mirrorOf>
+            <name>nexus-releases</name>
+            <url>http://172.16.36.173:8080/nexus/repository/maven-releases/</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>nexus</id>
+            <activation>
+                <jdk>1.8</jdk>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>nexus</activeProfile>
+    </activeProfiles>
+</settings>

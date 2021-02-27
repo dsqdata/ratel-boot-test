@@ -13,8 +13,23 @@
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
+      <option name="name" value="Central Repositories" />
+      <option name="url" value="http://172.16.36.173:8080/nexus/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="public" />
+      <option name="name" value="Public Repositories" />
+      <option name="url" value="http://172.16.36.173:8080/nexus/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshots" />
+      <option name="name" value="Snapshot Repositories" />
+      <option name="url" value="http://172.16.36.173:8080/nexus/repository/maven-public/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="jboss.community" />
@@ -25,6 +40,16 @@
       <option name="id" value="snapshots" />
       <option name="name" value="Snapshot Repositories" />
       <option name="url" value="http://152.136.133.34:8081/nexus/repository/maven-snapshots" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="release" />
+      <option name="name" value="Release Repositories" />
+      <option name="url" value="http://172.16.36.173:8080/nexus/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="central" />
+      <option name="url" value="http://172.16.36.173:8080/nexus/repository/maven-public/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="public" />
