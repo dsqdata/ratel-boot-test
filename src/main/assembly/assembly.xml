@@ -2,10 +2,9 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
     <!--与pom文件excution id相对应-->
-    <id>1.0</id>
+    <id>1.1-SNAPSHOT</id>
     <formats>
         <!--设置assembly包文件格式-->
-
         <format>tar.gz</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory> <!-- disable the creation of root's distribution dir in the archive -->
