@@ -34,7 +34,7 @@ import java.util.Set;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public class RetelBootSecurityConfig extends WebSecurityConfigurerAdapter {
+public class RatelBootSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final TokenProviderService tokenProviderService;
     private final CorsFilter corsFilter;
@@ -43,7 +43,7 @@ public class RetelBootSecurityConfig extends WebSecurityConfigurerAdapter {
     private final ApplicationContext applicationContext;
 
 
-    public RetelBootSecurityConfig(TokenProviderService tokenProviderService,
+    public RatelBootSecurityConfig(TokenProviderService tokenProviderService,
                                    CorsFilter corsFilter,
                                    JwtAuthenticationEntryPoint authenticationErrorHandler,
                                    JwtAccessDeniedHandler jwtAccessDeniedHandler,
