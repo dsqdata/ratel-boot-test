@@ -18,7 +18,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @Configuration
 //@ImportResource(locations = {"classpath:context/ratel-spring-redis.xml"})
-@ImportResource(locations = {"classpath:context/ratel-spring-redis.xml", "classpath:context/ratel-spring-rmi-server.xml"})
+@ImportResource(locations = {
+        "classpath:context/ratel-spring-redis.xml",
+        "classpath:context/ratel-spring-rmi-server.xml",
+        "classpath:context/ratel-spring-error.xml"
+})
 public class AppRun {
 
     public static void main(String[] args) {

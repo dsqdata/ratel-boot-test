@@ -65,7 +65,91 @@
     <artifactId>ratel-security</artifactId>
 </dependency>
 ```
+```
+1、客户端密码加密
+   登陆接口接收RSA加密的密码
+   
+   JS:
+    import { JSEncrypt } from 'jsencrypt'
 
+    // 密钥对生成 http://web.chacuo.net/netrsakeypair
+    const publicKey = 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANL378k3RiZHWx5AfJqdH9xRNBmD9wGD\n' +
+      '2iRe41HdTNF8RUhNnHit5NpMNtGL0NPTSSpPjjI1kJfVorRvaQerUgkCAwEAAQ=='
+    
+    const privateKey = 'MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEA0vfvyTdGJkdbHkB8\n' +
+      'mp0f3FE0GYP3AYPaJF7jUd1M0XxFSE2ceK3k2kw20YvQ09NJKk+OMjWQl9WitG9p\n' +
+      'B6tSCQIDAQABAkA2SimBrWC2/wvauBuYqjCFwLvYiRYqZKThUS3MZlebXJiLB+Ue\n' +
+      '/gUifAAKIg1avttUZsHBHrop4qfJCwAI0+YRAiEA+W3NK/RaXtnRqmoUUkb59zsZ\n' +
+      'UBLpvZgQPfj1MhyHDz0CIQDYhsAhPJ3mgS64NbUZmGWuuNKp5coY2GIj/zYDMJp6\n' +
+      'vQIgUueLFXv/eZ1ekgz2Oi67MNCk5jeTF2BurZqNLR3MSmUCIFT3Q6uHMtsB9Eha\n' +
+      '4u7hS31tj1UWE+D+ADzp59MGnoftAiBeHT7gDMuqeJHPL4b+kC+gzV4FGTfhR9q3\n' +
+      'tTbklZkD2A=='
+    
+    // 加密
+    export function encrypt(txt) {
+      const encryptor = new JSEncrypt()
+      encryptor.setPublicKey(publicKey) // 设置公钥
+      return encryptor.encrypt(txt) // 对需要加密的数据进行加密
+    }
+    
+    // 解密
+    export function decrypt(txt) {
+      const encryptor = new JSEncrypt()
+      encryptor.setPrivateKey(privateKey)
+      return encryptor.decrypt(txt)
+    }
+
+   JAVA:
+    public static void main(String[] args) throws Exception {
+        //加密字符串
+        String message = "df723820";
+        String publicKey = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANL378k3RiZHWx5AfJqdH9xRNBmD9wGD2iRe41HdTNF8RUhNnHit5NpMNtGL0NPTSSpPjjI1kJfVorRvaQerUgkCAwEAAQ==";
+        String privateKey = "MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEA0vfvyTdGJkdbHkB8mp0f3FE0GYP3AYPaJF7jUd1M0XxFSE2ceK3k2kw20YvQ09NJKk+OMjWQl9WitG9pB6tSCQIDAQABAkA2SimBrWC2/wvauBuYqjCFwLvYiRYqZKThUS3MZlebXJiLB+Ue/gUifAAKIg1avttUZsHBHrop4qfJCwAI0+YRAiEA+W3NK/RaXtnRqmoUUkb59zsZUBLpvZgQPfj1MhyHDz0CIQDYhsAhPJ3mgS64NbUZmGWuuNKp5coY2GIj/zYDMJp6vQIgUueLFXv/eZ1ekgz2Oi67MNCk5jeTF2BurZqNLR3MSmUCIFT3Q6uHMtsB9Eha4u7hS31tj1UWE+D+ADzp59MGnoftAiBeHT7gDMuqeJHPL4b+kC+gzV4FGTfhR9q3tTbklZkD2A==";
+        String messageEn = encrypt(message,publicKey);
+        System.out.println(message + "\t加密后的字符串为:" + messageEn);
+        String messageDe = decrypt(messageEn, privateKey);
+        System.out.println("还原后的字符串为:" + messageDe);
+    }
+    /**
+     * RSA公钥加密
+     *
+     * @param str       加密字符串
+     * @param publicKey 公钥
+     * @return 密文
+     * @throws Exception 加密过程中的异常信息
+     */
+    public static String encrypt(String str, String publicKey) throws Exception {
+        //base64编码的公钥
+        byte[] decoded = Base64.decodeBase64(publicKey);
+        RSAPublicKey pubKey = (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(decoded));
+        //RSA加密
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.ENCRYPT_MODE, pubKey);
+        String outStr = Base64.encodeBase64String(cipher.doFinal(str.getBytes("UTF-8")));
+        return outStr;
+    }
+
+    /**
+     * RSA私钥解密
+     *
+     * @param str        加密字符串
+     * @param privateKey 私钥
+     * @return 铭文
+     * @throws Exception 解密过程中的异常信息
+     */
+    public static String decrypt(String str, String privateKey) throws Exception {
+        //64位解码加密后的字符串
+        byte[] inputByte = Base64.decodeBase64(str.getBytes("UTF-8"));
+        //base64编码的私钥
+        byte[] decoded = Base64.decodeBase64(privateKey);
+        RSAPrivateKey priKey = (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
+        //RSA解密
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, priKey);
+        String outStr = new String(cipher.doFinal(inputByte));
+        return outStr;
+    }
+```
 ### 5、文件模块 `ratel-file`
 
 - 文件工具

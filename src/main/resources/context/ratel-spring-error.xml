@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="exceptionCode" class="org.ratel.framework.exception.code.ExceptionCode" abstract="true"/>
+    <bean id="exceptionCodeHandler" class="org.ratel.framework.exception.code.ExceptionCodeHandler" init-method="init">
+        <property name="exceptionCodeDefs">
+            <list>
+
+                <bean parent="exceptionCode" p:domain="" p:code="403" p:msg="被禁止的"/>
+
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10001" p:msg="系统错误"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10001" p:msg="参数类型解析异常"/>
+
+
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10005" p:msg="验证异常"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10006" p:msg="文件超出规定大小"/>
+
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10007" p:msg="请先配置邮箱信息，再操作"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10008" p:msg="邮箱密码校验失败"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10009" p:msg="邮件发送异常"/>
+
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10010" p:msg="cron表达式格式错误"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10011" p:msg="子任务中不能添加当前任务ID"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10012" p:msg="创建定时任务失败"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10013" p:msg="更新定时任务失败"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10014" p:msg="删除定时任务失败"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10015" p:msg="恢复定时任务失败"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10016" p:msg="定时任务执行失败"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10017" p:msg="定时任务暂停失败"/>
+
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10020" p:msg="新增内容失败"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10021" p:msg="数据重复"/>
+                <bean parent="exceptionCode" p:domain="SYS" p:code="10022" p:msg="文件上传失败"/>
+
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20001" p:msg="请输入合法的手机号码"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20002" p:msg="验证码不存在或已过期"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20003" p:msg="验证码错误"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20004" p:msg="密码错误"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20005" p:msg="发送短信失败"/>
+
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20010" p:msg="账号不存在"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20011" p:msg="账号未激活"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20012" p:msg="账号状态异常"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20013" p:msg="外链必须以http://或者https://开头"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20014" p:msg="上级不能为自己"/>
+
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20015" p:msg="不能修改他人资料"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20016" p:msg="手机号或邮件重复，请重新填写"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20017" p:msg="角色权限不足"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20018" p:msg="修改失败，旧密码错误"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20019" p:msg="新密码不能与旧密码相同"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20020" p:msg="密码错误"/>
+                <bean parent="exceptionCode" p:domain="AUTH" p:code="20021" p:msg="无效验证码"/>
+
+
+            </list>
+        </property>
+    </bean>
+
+
+</beans>
