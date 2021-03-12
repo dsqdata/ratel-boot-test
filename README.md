@@ -65,6 +65,7 @@
     <artifactId>ratel-security</artifactId>
 </dependency>
 ```
+
 ```
 1、客户端密码加密
    登陆接口接收RSA加密的密码
@@ -150,6 +151,7 @@
         return outStr;
     }
 ```
+
 ### 5、文件模块 `ratel-file`
 
 - 文件工具
@@ -216,9 +218,52 @@ UserEntity user2 = (UserEntity) strRedisTemplate.get(user.getKey());
 ### 8、线程工具 `ratel-common-thread`
 
 - 线程工具
+
 ```
 <dependency>
     <groupId>org.ratel</groupId>
     <artifactId>ratel-common-thread</artifactId>
 </dependency>
+```
+
+### 8、异常工具 `ratel-core-exception`
+
+- 线程工具
+
+```
+<dependency>
+    <groupId>org.ratel</groupId>
+    <artifactId>ratel-core-exception</artifactId>
+</dependency>
+```
+
+```
+1、ratel-spring-error.xml 配置errorCode、errorMsg
+    <bean id="exceptionCode" class="org.ratel.framework.exception.code.ExceptionCode" abstract="true"/>
+        <bean id="exceptionCodeHandler" class="org.ratel.framework.exception.code.ExceptionCodeHandler" init-method="init">
+            <property name="exceptionCodeDefs">
+                <list>
+                    <bean parent="exceptionCode" p:domain="" p:code="403" p:msg="被禁止的"/>
+                    <bean parent="exceptionCode" p:domain="SYS" p:code="10001" p:msg="系统错误"/>
+                    <bean parent="exceptionCode" p:domain="SYS" p:code="10001" p:msg="参数类型解析异常"/>
+                    ... ...
+                </list>
+            </property>
+        </bean>
+    </bean>
+
+2、配置全局异常处理
+    /**
+     * 全局异常处理
+     *
+     * @author Ratel-Cloud
+     * @version 1.0
+     * @date 2021/02/24
+     */
+    @Configuration
+    @RestControllerAdvice(annotations = {RestController.class, Controller.class})
+    @Slf4j
+    public class ExceptionConfiguration extends AbstractGlobalExceptionHandler {
+    
+    }
 ```

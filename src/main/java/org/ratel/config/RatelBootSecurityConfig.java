@@ -31,9 +31,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class RatelBootSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final TokenProviderService tokenProviderService;
